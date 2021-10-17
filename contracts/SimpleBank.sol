@@ -56,7 +56,7 @@ contract SimpleBank {
       //    allows function to run locally/off blockchain
       
       // 2. Get the balance of the sender of this transaction
-      return msg.sender.balance;
+      return balances[msg.sender];
     }
 
     /// @notice Enroll a customer with the bank
@@ -78,7 +78,7 @@ contract SimpleBank {
       // 1. Add the appropriate keyword so that this function can receive ether
       
       // 2. Users should be enrolled before they can make deposits
-      require(enrolled[msg.sender]);
+      require(enrolled[msg.sender] == true);
       // 3. Add the amount to the user's balance. Hint: the amount can be
       //    accessed from of the global variable `msg`
         balances[msg.sender] += msg.value;
